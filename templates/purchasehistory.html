@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block heading %}PURCHASE HISTORY{% endblock %}
+{% block history_active %}active{% endblock %}
+{% block purchase %}
+ <table>
+    <thead>
+        <tr>
+            {% for c in colnames %}
+                <th>{{c}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in details %}
+            <tr>
+               {% for data in row %} 
+			   <td>{{data}}</td>
+			   {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% block table_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% endblock %}
+{% block table_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+{% endblock %}

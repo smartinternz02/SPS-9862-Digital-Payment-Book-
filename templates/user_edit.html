@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+<center>
+<div style="width:50%">
+<div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+
+        <div class="card-image">
+          <img src={{ url_for('static', filename=details[7])}}>
+          <span class="card-title">PROFILE</span>
+        </div>
+		
+		
+          
+        <div class="card-content">
+		<form action="/user_edit" method="post">
+		<table>
+		<thead>
+		  <tr>
+			<td>Name</td>
+			<td><input placeholder="Name" id="first_name" name="first_name" type="text" class="validate" value = {{details[5]}}></td>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<td>Address</td>
+			<td><input placeholder="Address" id="address" name="address" type="text" class="validate" value = {{details[6]}}></td>
+		  </tr>
+		  <tr>
+			<td>Phone</td>
+			<td><input placeholder="Phone" id="pnumber" name="pnumber" type="tel" class="validate" value = {{details[8]}} ></td>
+		  </tr>
+		  <tr>
+			<td>Email</td>
+			<td><input placeholder="Email" id="email" name="email" type="email" class="validate" value = {{details[2]}}></td>
+		  </tr>
+		    <tr>
+			<td></td>
+			<td> <button type="submit" id="ebtn" class="waves-effect waves-light btn"> Save </button></td>
+		  </tr>
+		  
+		</tbody>
+		</table>
+			</form>
+        </div>
+
+	
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+{% endblock %}
+{% block table_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% endblock %}
+{% block table_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+{% endblock %}
+{% block heading %}USER PROFILE{% endblock %}
+{% block user_active %} active{% endblock %}

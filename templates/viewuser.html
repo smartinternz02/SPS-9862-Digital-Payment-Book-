@@ -1,0 +1,52 @@
+{% extends "adlayout.html" %}
+{% block content %}
+<center>
+<div style="width:50%">
+<div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+        <div class="card-image">
+          <img src={{ url_for('static', filename=details[7])}}>
+          <span class="card-title">PROFILE</span>
+        </div>
+        <div class="card-content">
+          <table>
+		<thead>
+		  <tr>
+			<td>Name</td>
+			<td>{{details[5]}}</td>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<td>Address</td>
+			<td>{{details[6]}}</td>
+		  </tr>
+		  <tr>
+			<td>Phone</td>
+			<td>{{details[8]}}</td>
+		  </tr>
+		  <tr>
+			<td>Email</td>
+			<td>{{details[2]}}</td>
+		  </tr>
+		</tbody>
+		</table>
+        </div>
+        <div class="card-action">
+         <a class="waves-effect waves-light btn" href="/adpayments" >BACK</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+{% endblock %}
+{% block table_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% endblock %}
+{% block table_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+{% endblock %}
+{% block heading %}USER PROFILE{% endblock %}
+{% block payments_active %} active{% endblock %}

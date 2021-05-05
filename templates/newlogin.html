@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOBPORTAL | LOGIN</title>
+        <!-- favicon -->
+        <!-- <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon"> -->
+        <!-- <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon"> -->
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-32x32.png">
+        <!-- bootstrap css cdn -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+        <!-- css stylesheet -->
+        <link rel="stylesheet" href="css/style.css">
+        <!-- font styles cdn -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@600&display=swap" rel="stylesheet">
+        <style>body {
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: #B0BEC5;
+    background-repeat: no-repeat
+}
+
+.card0 {
+    box-shadow: 0px 4px 8px 0px #757575;
+    border-radius: 0px
+}
+
+.card2 {
+    margin: 0px 40px
+}
+
+.logo {
+    width: 200px;
+    height: 100px;
+    margin-top: 20px;
+    margin-left: 35px
+}
+
+.image {
+    width: 360px;
+    height: 280px
+}
+
+.border-line {
+    border-right: 1px solid #EEEEEE
+}
+
+.facebook {
+    background-color: #3b5998;
+    color: #fff;
+    font-size: 18px;
+    padding-top: 5px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer
+}
+
+.twitter {
+    background-color: #1DA1F2;
+    color: #fff;
+    font-size: 18px;
+    padding-top: 5px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer
+}
+
+.linkedin {
+    background-color: #2867B2;
+    color: #fff;
+    font-size: 18px;
+    padding-top: 5px;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer
+}
+
+.line {
+    height: 1px;
+    width: 45%;
+    background-color: #E0E0E0;
+    margin-top: 10px
+}
+
+.or {
+    width: 10%;
+    font-weight: bold
+}
+
+.text-sm {
+    font-size: 14px !important
+}
+
+::placeholder {
+    color: #BDBDBD;
+    opacity: 1;
+    font-weight: 300
+}
+
+:-ms-input-placeholder {
+    color: #BDBDBD;
+    font-weight: 300
+}
+
+::-ms-input-placeholder {
+    color: #BDBDBD;
+    font-weight: 300
+}
+
+input,
+textarea {
+    padding: 10px 12px 10px 12px;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2C3E50;
+    font-size: 14px;
+    letter-spacing: 1px
+}
+
+input:focus,
+textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #304FFE;
+    outline-width: 0
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
+}
+
+a {
+    color: inherit;
+    cursor: pointer
+}
+
+.btn-blue {
+    background-color: #1A237E;
+    width: 150px;
+    color: #fff;
+    border-radius: 2px
+}
+
+.btn-blue:hover {
+    background-color: #000;
+    cursor: pointer
+}
+
+.bg-blue {
+    color: #fff;
+    background-color: #1A237E
+}
+
+@media screen and (max-width: 991px) {
+    .logo {
+        margin-left: 0px
+    }
+
+    .image {
+        width: 300px;
+        height: 220px
+    }
+
+    .border-line {
+        border-right: none
+    }
+
+    .card2 {
+        border-top: 1px solid #EEEEEE !important;
+        margin: 0px 15px
+    }
+    .admin-nav {
+    
+    text-align: right;
+    width: 100%;
+    padding-right: 60px;
+    padding-top: 40px;
+        }
+* {
+    font-family: 'Alegreya', serif !important;
+}
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+
+ }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+
+ }
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .navbar {
+        padding-top:15px;
+        padding-bottom:15px;
+        background-color: white;
+    }
+    .navbar-brand{
+        padding-left: 5px;
+    }
+    .navbar-nav {
+        margin-left: 30px;  
+    }
+    .nav-item {
+        padding-left:5px;
+    }
+    .donate-sponsor{
+        margin-right:10px;
+    }
+    #donate,#sponsor{
+        margin:5px;
+        padding: 5px 15px 5px 15px;
+    }
+    .homepage-header{
+        background: url('../img/group.JPG');
+        background-size: cover;
+        background-position: center top;
+        padding: 0;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        height: 85vh;
+    }
+    .home-for-children {
+        background-color: #ffeeba;
+        margin-top:0px;
+        padding-top:10px;
+        padding-bottom:30px;
+    }
+    .home-for-children h2 {
+        line-height: 2.5rem !important;
+        letter-spacing: 3px;
+        font-weight: 600;
+    }
+    .home-for-children h5 {
+        line-height: 1.8rem;
+    }
+    .home-for-children .btn-success {
+        padding: 8px 25px;
+        font-size: large;
+    }
+    /* our focus */
+    .our-focus .container {
+        margin-top:3rem !important;
+    }
+
+    .our-focus .row{
+        margin-top:1.5rem !important;
+    }
+    .our-focus .card {
+        border: none !important;
+    }
+    .our-focus #focus-first {
+        margin-right:80px;
+    }
+    .our-focus #focus-second {
+        margin-right:90px;
+    }
+    /* media */
+    .media .container{
+        margin-top: 3rem !important;
+    }
+    .media .row{
+        margin-top: 1.5rem !important;
+    }
+    /* footer */
+    .row-initiative {
+        margin-top:10px
+    }
+    .site-footer {
+        margin-top:30px;
+        line-height:24px;
+    }
+    .footer-links {
+        padding-left:0;
+        list-style: none;
+    }
+    .footer-links li {
+        display: block;
+    }
+    .footer-links.inline li {
+        display: inline-block;
+    }
+    .footer-links li a{
+        color: black;
+    }
+    .footer-logo img{
+        width: 100px;
+    }
+    .social-icons {
+        text-align: right;
+        margin-left:50px;
+    }
+    .social-icons li{
+        list-style: none;
+        display: inline-block;
+    }
+    .social-icons li a {
+        border-radius: 50%;
+        margin-left:10px;
+    }
+    input {
+        padding:10px 20px;
+      }
+      #button {
+        border:none;
+        padding:10px 20px;
+        border-radius:10px;
+        animation:pulse 3s infinite ease-out;
+      }
+      .emsg{
+          font-color:red
+          }
+ }
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    .navbar-brand{
+        padding-left: 10px;
+    }
+ }
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+    .navbar-brand{
+        padding-left: 15px;
+    }
+ }
+    
+}</style>
+<script>
+function validate()
+{
+var password = document.getElementById("password").value;
+if(password.length()<6){
+   alert("Password must be minimum 6 characters")
+   return false;
+}
+return true;
+}
+</script>
+</head>
+<body>
+    <!-- bootstrap navbar -->
+    <div class="logo mt-3 text-center">
+        <a class="main-logo-img mt-5" href="#"><img src="static/img/smartinternz.png" alt="sheep-logo" height="50px" width="180px">
+            <!-- <a class="navbar-brand" href="index.html">JobPortal</a> -->
+          </a>
+    </div>
+      <!-- navbar ends -->
+    <!-- Login form -->
+    <div class="login text-center mt-5"> 
+        <h2> Register Form </h2>
+        <div class="card2 card border-3 px-4 py-5" style = "width:50% ; float : left" >
+        <img src="static/img/payment.jpeg" alt="no image found" height="450px">
+        </div>
+        <div class="card2 card border-3 px-4 py-5" style = "width:30% ; float : right" >
+        <form action="/register" method="post" onsubmit = "return validate()">
+        <div class="emsg">{{ msg }}</div>
+            <input type="text" name="username" placeholder="Enter Your Username"  id="username" required></br></br>
+            <input type="email" name="email" placeholder="Enter Your Email" id="email" required></br></br>
+			<input type="password" name="password" placeholder="Enter Your Password" id="password" required></br></br>
+            </br>
+            </br>
+        <button type="submit" id="button" class="btn btn-primary"> Register </button>
+        <br>
+        <br>
+        <p> already have an account ? please   <a href="/login">login! </a> </p>
+        </form>
+        
+        </div>
+    </div>
+
+
+    <div class="note mt-3 text-center"> <!--Register form -->
+    
+   
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,95 @@
+{% extends "adlayout.html" %}
+{% block heading %}COMPLAINTS{% endblock %}
+{% block content %}
+
+
+<center>
+<a class="navbar-brand">PENDING COMPLAINTS</a>
+<br><br>
+<div style="width:90%">
+<div class="row">
+    <div class="col s12 m7">
+   
+		
+		
+          
+        <div class="card-content">
+		<table>
+    <thead>
+        <tr>
+            {% for c in colnames %}
+                <th>{{c}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in details %}
+			{% if row[6] == "pending" %}
+            <tr>
+               {% for data in row %} 
+			   <td>{{data}}</td>
+			   {% endfor %}
+			   <td><a class="waves-effect waves-light btn" href="/closecomplaints?cid={{row[0]}}"><i class="large material-icons">check</i>Solve</a></td>
+            </tr>
+			{% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+        </div>
+
+	
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</center><br>
+
+<center>
+<a class="navbar-brand">SOLVED COMPLAINTS</a>
+<br><br>
+<div style="width:90%">
+<div class="row">
+    <div class="col s12 m7">
+   
+		
+		
+          
+        <div class="card-content">
+<table>
+    <thead>
+        <tr>
+            {% for c in colnames[:-1] %}
+                <th>{{c}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in details %}
+			{% if row[6] == "solved" %}
+            <tr>
+               {% for data in row %} 
+			   <td>{{data}}</td>
+			   {% endfor %}
+            </tr>
+			 {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+        </div>
+
+	
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+{% endblock %}
+{% block complaints_active %}active{% endblock %}
+{% block table_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% endblock %}
+{% block table_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+{% endblock %}

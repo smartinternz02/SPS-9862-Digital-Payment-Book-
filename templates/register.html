@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Main css -->
+    <link rel="stylesheet" href={{ url_for('static', filename="css/newstyle.css")}}>
+	
+</head>
+<body>
+<div>
+  <h1>Register</h1>
+  <form action="/register" method="post" onsubmit = "return validate()">
+  <div class="emsg">{{ msg }}</div>
+       <input type="text"  name="name" placeholder="Name" id ="name" required>
+       <input type="text"  name="username" placeholder="Username" id ="username" required>
+       <input type="email" name="email" placeholder="Email" id="email" required>
+       <input type="password" name="password" placeholder="Password" id="password" required>
+  <!--<button type="submit" id="button">Register</button>-->
+  <button type="submit" id="button" class="btn btn-primary"> Register </button>
+  <p> already have an account ? please <a href="/login "style="color: white">login!</a> </p>
+  </div>
+   </form>
+</body>
+</html>

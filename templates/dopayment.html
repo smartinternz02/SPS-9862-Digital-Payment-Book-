@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+<center>
+<div style="width:50%">
+<div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+
+       
+		
+		
+          
+        <div class="card-content">
+		<form action="/dopayment" method="post">
+		<table>
+<thead>
+  <tr>
+    <td>Date</td>
+    <td>{{details[0][1]}}</td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Particulars</td>
+   <td>{{details[0][2]}}</td>
+  </tr>
+  <tr>
+    <td>Total Amount</td>
+    <td>{{details[0][3]}}</td>
+  </tr>
+  <tr>
+    <td>Paid Amount</td>
+   <td>{{details[0][4]}}</td>
+  </tr>
+  <tr>
+    <td>Balance Amount</td>
+    <td>{{details[0][5]}}</td>
+  </tr>
+  <tr>
+    <td>Amount Paying</td>
+    <td><input id="amountpaying" name="amountpaying" type="text" class="validate" value = {{details[0][5]}}></td>
+  </tr>
+  <tr>
+    <td><input type="hidden" id="pid" name="pid" value="{{details[0][0]}}">
+	</td>
+    <td><button class="waves-effect waves-light btn" type="submit"><i class="large material-icons">account_balance_wallet</i>Pay</button></td>
+  </tr>
+</tbody>
+</table>
+			</form>
+        </div>
+
+	
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+{% endblock %}
+{% block table_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% endblock %}
+{% block table_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+{% endblock %}
+{% block heading %}PAYMENT{% endblock %}
+{% block payments_active %} active{% endblock %}

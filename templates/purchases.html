@@ -1,0 +1,93 @@
+{% extends "adlayout.html" %}
+{% block content %}
+<center>
+<div style="width:50%">
+<div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+
+        <div class="card-image">
+          <span class="card-title">Billing</span>
+        </div>
+		
+		
+          
+        <div class="card-content">
+		<form action="/purchases" method="post">
+		<table>
+		<thead>
+		  <tr>
+			<td>User Name</td>
+			<td><input placeholder="User Name" id="username"  name="username"></td></input>
+		  </tr>
+		</thead>
+		<tbody>
+		<tr>
+		  <tr>
+			<td>Date</td>
+			<td><input placeholder="Date" id="date" name="date" type="date" class="validate" ></td>
+		  </tr>
+		<tr>
+			<td>Particulars</td>
+			<td><input placeholder="Particulars" id="particulars" name="particulars" type="text" class="validate" ></td>
+		  </tr>
+		  
+		  <tr>
+			<td>Total Amount</td>
+			<td><input placeholder="Total amount" id="tamount" name="tamount" type="number" class="validate" ></td>
+		  </tr>
+		  <tr>
+			<td>Amount Paying</td>
+			<td><input placeholder="Amount paying" id="payingamt" name="payingamt" type="number" class="validate"></td>
+		  </tr>
+		   <tr>
+			<td>Balance Amount</td>
+			<td><input placeholder="Balance Amount" id="bamount" name="bamount" type="number" class="validate"></td>
+		  </tr>
+		    <tr>
+			<td></td>
+			<td> <button type="submit" id="ebtn" class="waves-effect waves-light btn"> Save </button></td>
+		  </tr>
+		  
+		</tbody>
+		</table>
+			</form>
+        </div>
+
+	
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+{% endblock %}
+{% block table_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% endblock %}
+{% block table_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $( function() {
+    var availableTags = [];
+{% for value in details %}
+availableTags.push("{{value[0]}}")
+{% endfor %}
+    $( "#username" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  
+ $( "#payingamt" ).keyup(function() {
+ var x = parseInt($("#tamount").val());
+ var y = parseInt($("#payingamt").val());
+ var z = x-y;
+  $("#bamount").val(z.toString());
+});
+  </script>
+
+{% endblock %}
+{% block heading %}BILLING{% endblock %}
+{% block purchases_active %} active{% endblock %}

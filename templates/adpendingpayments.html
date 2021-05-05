@@ -1,0 +1,31 @@
+{% extends "adlayout.html" %}
+{% block heading %}PENDING PAYMENTS{% endblock %}
+{% block payments_active %}active{% endblock %}
+{% block payments %}
+ <table>
+    <thead>
+        <tr>
+            {% for c in colnames %}
+                <th>{{c}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in details %}
+            <tr>
+			<td><a href="/viewuser?uname={{row[1]}}">{{row[1]}}</a></td>
+               {% for data in row[2:] %} 
+			   <td>{{data}}</td>
+			   {% endfor %}
+			   <td><a class="waves-effect waves-light btn" href="/doalert?pid={{row[0]}}"><i class="large material-icons">error_outline</i>Alert</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% block table_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% endblock %}
+{% block table_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+{% endblock %}
