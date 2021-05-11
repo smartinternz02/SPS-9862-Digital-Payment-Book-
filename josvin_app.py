@@ -11,18 +11,28 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
 from UserModel import UserModel
+from util import MailClient
+from analyzer import Predictor
 app = Flask(__name__)
 app.secret_key = 'a'
 
   
-app.config['MYSQL_HOST'] = "localhost"#"remote.mysql"
-app.config['MYSQL_USER'] = "root"#"username for remote"
-app.config['MYSQL_PASSWORD'] = ""#"password of the remote for remote"
-app.config['MYSQL_DB'] = "test1"
+app.config['MYSQL_HOST'] = "remotemysql.com" #"localhost"#
+app.config['MYSQL_USER'] = "lxtJiysGzR"#"username for remote"
+app.config['MYSQL_PASSWORD'] = "t84WXWjtQr"#"password of the remote for remote"
+app.config['MYSQL_DB'] = "lxtJiysGzR"
 mysql = MySQL(app)
 user_model = UserModel(mysql)
+mailobj = MailClient()
+predictor=Predictor(user_model)
 @app.route('/')#app.route(rule,options)
 def homer():
+    
+    predictor.loadData()
+    predictor.buildModel()
+    predictor.saveModel()
+    #y=predictor.predict(10)
+    #print("predicted value =",y)
     
     return render_template('home.html')
     
@@ -71,6 +81,8 @@ def registet():
         response = user_model.register(name,username,email,password)
         if response :
             msg = 'You have successfully registered !'
+            data="Hi %s,<br><br> Your Account has successfully registered<br><br>Regards,<br>Digital Payment team"%(name,)
+            mailobj.send(email,"Registration confirmation",data)
             return render_template('home.html', msg = msg)
             #TEXT = "Hello "+username + ",\n\n"+ """Thanks for applying registring at smartinterns """ 
             #message  = 'Subject: {}\n\n{}'.format("smartinterns Carrers", TEXT)
@@ -90,11 +102,10 @@ def dashboard():
         trend = user_model.dash_purchase_trend(username)
         count=user_model.get_new_notifications_count(username)
         return render_template('/dashboard.html',data = username , name=session['name'],values=values,trend=trend,count=count)
-   #if 'loggedin' in session == True:
-        #return render_template('/dashboard.html')
-   # else:
-   
-        #return render_template('/home.html',msg='Please login with your credentials')
+        if 'loggedin' in session == True:
+            return render_template('/dashboard.html')
+        else:
+            return render_template('/home.html',msg='Please login with your credentials')
         
 @app.route('/addashboard')
 def addashboard():
@@ -274,8 +285,25 @@ def purchases():
             status = "complete"
         status="pending"
         user_model.admin_billing(username,date,tamount,payingamt,bamount,particulars,status)
+        predictor.loadData()
+        predictor.buildModel()
+        predictor.saveModel()
     return render_template('/purchases.html',count=count[0],details=details)
+
+@app.route('/analytics', methods =['GET', 'POST'])
+def analytics():
+     count=user_model.get_unsolved_complaints()
+     values = user_model.admin_dash_purchase_details()
+     trend = user_model.admin_dash_purchase_trend()
+     pvalue=""
+     if request.method == 'POST' :
+         pdate = request.form['pdate']
+         predictor.loadModel()
+         months = user_model.get_month_diff(pdate)
+         pvalue=predictor.predict(months)
+     return render_template('analytics.html',count=count[0],values=values,trend=trend,pvalue=pvalue)
+    
 
 
 if __name__ == '__main__':
-    app.run(debug=True,port=5000)#run in the webbrowser
+    app.run(host='0.0.0.0',port=8080)#run in the webbrowser

@@ -4,6 +4,7 @@ Created on Mon Apr 26 18:53:30 2021
 
 @author: HP
 """
+from datetime import datetime
 
 
 class UserModel:
@@ -11,6 +12,7 @@ class UserModel:
     def __init__(self,dbobj):
         
         self.dbobj = dbobj
+
     
     def validate_user(self,username,password):
         
@@ -34,7 +36,7 @@ class UserModel:
         else:
             cursor = self.dbobj.connection.cursor()
             cursor.execute('INSERT INTO login VALUES ( % s, % s, % s,%s)', (username,password,email,'user'))
-            cursor.execute('INSERT INTO userdetails(username,name) VALUES ( % s,% s)', (username,name))
+            cursor.execute('INSERT INTO userdetails(username,name,address,profile_pic_url,phone) VALUES ( % s,% s,% s,% s,% s)', (username,name," "," "," "))
             cursor.execute('INSERT INTO notification VALUES ( NULL,NOW(), % s, % s,% s,% s)',(username,"Profile Completion","Please Complete Your Profile Details","new"))
             self.dbobj.connection.commit()
             self.dbobj.connection.commit()
@@ -66,7 +68,7 @@ class UserModel:
         if account:
             return account, ['Date','Particulars','Total Amount','Paid Amount','Balance Amount','Status']
         else:
-            return None
+            return [],['Date','Particulars','Total Amount','Paid Amount','Balance Amount','Status']
         
     def get_pending_payments(self,username):
         cursor = self.dbobj.connection.cursor()
@@ -108,7 +110,7 @@ class UserModel:
         if account:
             return account, ['Complaint ID','Date','Message','Status']
         else:
-            return None
+            return [],['Complaint ID','Date','Message','Status']
         
     def solve_user_complaints(self):
         cursor = self.dbobj.connection.cursor()
@@ -183,7 +185,7 @@ class UserModel:
      
     def dash_purchase_trend(self,username):
         cursor = self.dbobj.connection.cursor()
-        cursor.execute('SELECT MONTHNAME(purchase_date),COUNT(*) FROM purchase WHERE username = % s GROUP BY MONTH(purchase_date)' ,(username,))
+        cursor.execute('SELECT T.MON,COUNT(*) FROM (SELECT MONTHNAME(purchase_date) AS MON FROM purchase WHERE username = % s) AS T GROUP BY T.MON' ,(username,))
         account = cursor.fetchall()
         return account
     
@@ -238,7 +240,7 @@ class UserModel:
         
     def admin_dash_purchase_trend(self):
         cursor = self.dbobj.connection.cursor()
-        cursor.execute('SELECT MONTHNAME(purchase_date),COUNT(*) FROM purchase GROUP BY MONTH(purchase_date)')
+        cursor.execute('SELECT T.MON,COUNT(*) FROM (SELECT MONTHNAME(purchase_date) AS MON FROM purchase) AS T GROUP BY T.MON')
         account = cursor.fetchall()
         return account
     
@@ -265,8 +267,16 @@ class UserModel:
              return account
         else:
             return None
-    
+    def get_month_diff(self,pdate):
+         cursor = self.dbobj.connection.cursor()
+         sdate = datetime.strptime(pdate,'%Y-%m-%d')
+         ssdate = sdate.strftime('%Y-%m-%d')
+         print(sdate,type(sdate),ssdate)
+         cursor.execute('SELECT TIMESTAMPDIFF(MONTH,(SELECT MIN(purchase_date) from purchase),%s)',(ssdate,))
+         account = cursor.fetchone()
+         return int(account[0])
         
+
         
          
          

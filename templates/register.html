@@ -5,8 +5,22 @@
     <!-- Main css -->
     <link rel="stylesheet" href={{ url_for('static', filename="css/newstyle.css")}}>
 	
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$(document).ready(function(){
+ $('input[type="checkbox"]').click(function(){
+ if($(this).prop("checked") == true){
+$(':input[type="submit"]').prop('disabled',false)
+}
+else{
+$(':input[type="submit"]').prop('disabled',true)
+}})
+})
+</script>
 </head>
 <body>
+
 <div>
   <h1>Register</h1>
   <form action="/register" method="post" onsubmit = "return validate()">
@@ -15,9 +29,12 @@
        <input type="text"  name="username" placeholder="Username" id ="username" required>
        <input type="email" name="email" placeholder="Email" id="email" required>
        <input type="password" name="password" placeholder="Password" id="password" required>
+	   <div>
+	   <input type="checkbox" name="agree" id ="agree" >I Agree the terms and privacy</input>
+	   </div>
   <!--<button type="submit" id="button">Register</button>-->
-  <button type="submit" id="button" class="btn btn-primary"> Register </button>
-  <p> already have an account ? please <a href="/login "style="color: white">login!</a> </p>
+  <button type="submit" id="button" class="btn btn-primary" disabled> Register </button>
+  <p> Already have an account ? Please <a href="/login "style="color: white">Login!</a> </p>
   </div>
    </form>
 </body>

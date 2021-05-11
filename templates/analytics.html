@@ -1,0 +1,73 @@
+{% extends "adlayout.html" %}
+{% block heading %}ANALYTICS{% endblock %}
+{% block content %}
+<center>
+<div style="width:50%">
+<div class="row">
+    <div class="col s12 m7">
+      <div class="card">
+		<canvas id="line-chart" width="800" height="450"></canvas>		
+        <div class="card-content">
+		<form action="/analytics" method="post">
+		<table>
+		<thead>
+		  <tr>
+			<td>Select a Month to Predict</td>
+			<td><input placeholder="select a month" id="pdate" name="pdate" type="date" class="validate"> <button type="submit" id="ebtn" class="waves-effect waves-light btn"> Predict </button></td>
+		  </tr>
+		  <tr>
+			<td>Predicted Purchase</td>
+			<td><p>{{pvalue}}</p></td>
+		  </tr>
+		</thead>
+		</table>
+			</form>
+        </div>
+
+	
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+<script>
+</script>
+{% endblock %}
+{% block chart_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script>
+var labels = [];
+var values =[];
+{% for value in trend %}
+labels.push("{{value[0]}}")
+values.push({{value[1]}})
+{% endfor %}
+
+new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: labels,
+    datasets: [{ 
+        data: values,
+        borderColor: "#3e95cd",
+		label: "Number of Purchases",
+        fill: false
+      },
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Purchase Trend'
+    }
+  }
+});
+</script>
+{% endblock %}
+{% block analytic_active %}active{% endblock %}
+{% block table_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% endblock %}
+{% block table_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+{% endblock %}
